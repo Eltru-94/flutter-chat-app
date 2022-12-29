@@ -8,11 +8,11 @@ class ButtonAzul extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      elevation: 2,
+    return TextButton(
+      /* elevation: 2,
       highlightElevation: 5,
       color: Colors.blue,
-      shape: StadiumBorder(),
+      shape: StadiumBorder(),*/
       onPressed: this.onPresseded,
       child: Container(
         width: double.infinity,

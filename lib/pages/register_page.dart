@@ -1,12 +1,84 @@
+import 'package:app_chat/widgets/button.dart';
 import 'package:flutter/material.dart';
 
-class resgisterPage extends StatelessWidget {
+import '../widgets/custom_input.dart';
+import '../widgets/label.dart';
+import '../widgets/logo.dart';
+
+class registerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Register page'),
-      ),
+      backgroundColor: Color(0xffF2F2F2),
+      body: SafeArea(
+          child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Container(
+                  //height: MediaQuery.of(context).size.height * 0.9,
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Logo(
+                    Titulo: 'Register',
+                  ),
+                  _Form(),
+                  Labels(
+                    Titulo: '¿Ya tienes cuenta?',
+                    SubTitulo: 'Ingresa ahora',
+                    Ruta: 'login',
+                  ),
+                  Text(
+                    'Términos y condiciones de uso.!',
+                    style: TextStyle(fontWeight: FontWeight.w200),
+                  )
+                ],
+              )))),
     );
+  }
+}
+
+class _Form extends StatefulWidget {
+  @override
+  _FormState createState() => _FormState();
+}
+
+class _FormState extends State<_Form> {
+  final nombreCtrl = TextEditingController();
+  final emailCtrl = TextEditingController();
+  final passCtrl = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: EdgeInsets.only(top: 40),
+        padding: EdgeInsets.symmetric(horizontal: 50),
+        child: Column(children: <Widget>[
+          customInput(
+            icon: Icons.supervised_user_circle,
+            placeholder: 'Nombre',
+            keyboardType: TextInputType.emailAddress,
+            textController: nombreCtrl,
+          ),
+          customInput(
+            icon: Icons.mail_outline,
+            placeholder: 'Correo',
+            keyboardType: TextInputType.emailAddress,
+            textController: emailCtrl,
+          ),
+          customInput(
+            icon: Icons.lock_outline,
+            placeholder: 'password',
+            textController: passCtrl,
+            isPassword: true,
+          ),
+          ButtonAzul(
+            text: "Ingresar",
+            onPresseded: () {
+              print(emailCtrl.text);
+              print(passCtrl.text);
+              print(nombreCtrl.text);
+            },
+          )
+        ]));
   }
 }
